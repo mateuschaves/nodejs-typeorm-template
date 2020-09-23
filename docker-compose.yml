@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+  messenger:
+    build: .
+    command: yarn start
+    container_name: "api"
+    networks:
+      - webnet
+    environment:
+      PORT: ${PORT}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "3000:${PORT}"
+    links:
+      - database
+    depends_on:
+      - database
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    container_name: "database"
+    networks:
+      - webnet
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_DATABASE: spotify
+networks:
+  webnet:
