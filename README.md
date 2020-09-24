@@ -17,7 +17,7 @@ $ yarn install
 :white_check_mark: Docker\
 :white_check_mark: Docker Compose\
 :white_check_mark: Typescript\
-:white_check_mark: TypeORM\
+:white_check_mark: TypeORM
 
 ## Running
 
